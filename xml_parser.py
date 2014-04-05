@@ -34,7 +34,7 @@ class XmlParser:
 		usock.close()
 		print self.xmldoc.toxml()
                 print "parsed ok"
-        def build_url_list(self):
+        def build_camera_list(self):
 		self.list = []
                 print "building list"
 		#get camera nodes loop and build IpCam objects list
@@ -64,7 +64,7 @@ class XmlParser:
 def main():
 	cameras = 'stream_list.xml'
 	p = XmlParser(cameras)
-	list = p.build_url_list()
+	list = p.build_camera_list()
 	print "here is the ful list"
 	for item in list:
 		print item.get_name()
