@@ -23,6 +23,7 @@ def main():
 		index = int(char)-1
 		url = cam_list[index].get_rem_addr()
 		print url
+#comment
 		try:	
 			next_proc = subprocess.Popen(['omxplayer', url],  stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			#current_proc.communicate('p')
