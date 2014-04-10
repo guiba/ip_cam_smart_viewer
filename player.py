@@ -6,7 +6,7 @@ from xml_parser import XmlParser
 
 def main():
   #build ipcam list from config.xml
-  config = 'stream_list.xml'
+  config = 'config.xml'
   parser = XmlParser(config)
   cam_list = parser.build_cam_list()
   print 'Full List'
@@ -15,7 +15,7 @@ def main():
   default = 0 
   current_proc = subprocess.Popen(['omxplayer', cam_list[default].get_rem_addr()] , stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
   while True:
-	char = raw_input("choose camera [1, 2, 3]: ")
+	char = raw_input("choose camera [1 - %s ]: " % len(cam_list))
 	if char == 'q':
 		subprocess.Popen(['killall', 'omxplayer.bin'])
 		break
