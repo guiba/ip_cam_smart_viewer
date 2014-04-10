@@ -1,0 +1,57 @@
+<?php
+  if(isset($_POST['title']) === true){
+  require '../db/connect.php';
+  $summary = "screenads.dk";
+  $title=trim($_POST['title']);
+  
+  
+  $sql="SELECT * FROM feeds 
+		WHERE title='$title'";
+	$res=mysql_query($sql);
+	$rows = mysql_num_rows($res);
+	 
+	
+	if($title != strip_tags($title))
+	{
+	echo "illegal html caracters in the string";
+	}
+	elseif($title != mysql_real_escape_string($title))
+	{
+	echo "illegal sql caracters in the string";
+	}
+	elseif($rows == 0)
+	{
+	  $timestamp = mktime();
+	  $date = date("Y-m-d", $timestamp);
+	  $sql="INSERT INTO feeds (title, summary, date) VALUES ('$title', '$summary', '$date')";
+	  $res=mysql_query($sql);
+// 	  echo "The follow message is been recorded:".$title;
+	  require 'table_creator.php';
+//show the table
+// 	  $sql="SELECT *
+// 		  FROM feeds
+// 		    ORDER BY id DESC";
+// 	  $res=mysql_query($sql);?>
+ 	  <!--<table id="results-table">
+ 	  <thead>
+	    <tr>
+	    <th>Nr.</th><th>message</th>
+	    </tr>
+ 	  <thead>
+ 	  <tbody>-->
+// 	  <?php
+// 	  
+// 	  while($row=mysql_fetch_array($res))
+// 	  {
+// 	    echo "<tr><td>$row[0]</td><td>$row[1]</td><td><input id=\"del\" type=\"submit\" value=\"Delete\"/></td></tr>";
+// 	  }
+// 	 echo "</tbody>"; 
+	}
+	else		//if the string already exist
+	{
+	  echo "The message already exist";
+	}
+  }
+  
+  
+?> 

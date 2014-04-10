@@ -1,0 +1,53 @@
+ <?php
+require '../db/connect.php';
+$sql="SELECT *
+		  FROM feeds
+		    ORDER BY id DESC";
+	  $res=mysql_query($sql);?>
+ 	  <table id="results-table">
+ 	  <thead>
+	    <tr>
+	    <th>Nr.</th><th>message</th><th>Delete</th>
+	    </tr>
+ 	  <thead>
+ 	  <tbody>
+	  <?php
+	  
+	  while($row=mysql_fetch_array($res))
+	  {
+	    echo "<tr><td>$row[0]</td><td>$row[1]</td><td><input id=\"del\" type=\"submit\" value=\"Delete\" name=\"$row[0]\" class=\"ui-button ui-widget ui-state-default ui-corner-all\"/></td></tr>";
+	  }
+	 if($res)
+	    {
+	     
+	      //Create the xml rss file and write it on rss.xml file
+	      $rss = '<?xml version="1.0" encoding="ISO-8859-1" ?>';
+	      $rss .= '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">  
+			<channel>  
+			<title>bolle and ko</title>  
+			<description>Tilbud</description>  
+			<link>http://www.screenads.dk</link>';  
+
+	      $sql="SELECT title, summary FROM feeds";  
+	      $result=mysql_query($sql) or die ($sql."  ".mysql_error());  
+	      while ($row=mysql_fetch_array($result))  
+	      {  
+
+	      $rss .=
+		'<item>  
+		<title>'.$row['title'].'</title>  
+		<description>'.$row['summary'].'</description>    
+		<link>http://www.screenads.dk</link>
+		</item>';  
+		
+	      }  
+	      $rss .='</channel>  
+		      </rss> ';
+		      //write file 
+		      $file_name = "../rss.xml";
+		      $file = fopen($file_name,"w");
+		      fwrite($file,$rss);
+		      fclose($file);
+	    }
+	 
+?>

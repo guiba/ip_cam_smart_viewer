@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<list>
+  <cam>
+    <name>cam2</name>
+    <loc_addr href="rtsp://admin:admin@9002a9acc3e3.dahuaddns.com:554/cam/realmonitor?channel=1&amp;subtype=0"/>
+    <rem_addr href="rtsp://admin:admin@9002a9acc3e3.dahuaddns.com:554/cam/realmonitor?channel=1&amp;subtype=0"/>
+  </cam>
+  <cam>
+    <name>Cam 3</name>
+    <loc_addr href="rtsp://admin:admin@9002a9acc3e3.dahuaddns.com:554/cam/realmonitor?channel=2&amp;subtype=0"/>
+    <rem_addr href="rtsp://admin:admin@9002a9acc3e3.dahuaddns.com:554/cam/realmonitor?channel=2&amp;subtype=0"/>
+  </cam>
+</list>

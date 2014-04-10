@@ -1,0 +1,9 @@
+<?php
+$id = $_POST['id'];
+$sql="DELETE
+	FROM feeds
+	  WHERE id = '$id'";
+$res=mysql_query($sql);
+// require 'table_creator.php';
+echo $id;
+?> 

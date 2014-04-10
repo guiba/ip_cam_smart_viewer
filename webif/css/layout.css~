@@ -1,0 +1,51 @@
+
+#title{
+  width: 80%;
+}
+
+#wrapper{
+  height:100%;
+  width:100%;
+  
+}
+#content{
+  float: left;
+  width: 100%;
+  border: dashed 3px #444;
+/*   padding: 2%; */
+   
+}
+#result{
+  width: 49%;
+  float: left;
+  padding:1%;
+} 
+
+#form{
+  width: 49%;
+  float: left;
+  padding:1%;
+}
+
+/*
+ * Remove most spacing between table cells.
+ */
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
