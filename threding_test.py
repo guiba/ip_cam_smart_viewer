@@ -19,9 +19,11 @@ while True:
       if(output.startswith('waiting')):
 	print "Ready for input"
       if(output.startswith('TRAFFIC:')):
-	code = output.split('>>')
-	if (len(code) > 1):
-	  print code[1]
+	sub = output.split('>>')
+	if (len(sub) > 1):
+	  if(sub[1].startswith(' 01:44:2')):
+	    code = sub[1].split(':2')
+	    print code[1]
       
       
 def check_line(line):
