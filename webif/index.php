@@ -15,10 +15,12 @@
 	  $('#submit').on('click', function() {
 	  var name=$('#name').val();
 	  var loc_addr=$('#loc_addr').val();
+	  var clean_loc_addr = loc_addr.replace('&', '&amp;'); //escaping special caracters
 	  var rem_addr=$('#rem_addr').val();
-	  if($.trim(name) != '' && $.trim(loc_addr) != '' && $.trim(rem_addr) != ''){
+	  var clean_rem_addr = rem_addr.replace('&', '&amp;');
+	  if($.trim(name) != '' && $.trim(clean_loc_addr) != '' && $.trim(clean_rem_addr) != ''){
 // 	send the form to php
-	    $.post('ajax/xml_creator.php', {name: name, loc_addr: loc_addr, rem_addr: rem_addr}, 
+	    $.post('ajax/xml_creator.php', {name: name, loc_addr: clean_loc_addr, rem_addr: clean_rem_addr}, 
 	      function(data) {
 		$('#result').html(data);
 		})
@@ -51,10 +53,11 @@
 // preview button onClick
       $('#preview').on('click', function() {
        var url = $('#loc_addr').val();
+       var clean_url = url.replace('&', '&amp;');
       var vlc = document.getElementById("vlcEmb");
       try {
         var options = new Array(":aspect-ratio=16:10", "--rtsp-tcp", ":no-video-title-show");
-      var id = vlc.playlist.add(url,'Video',options);
+      var id = vlc.playlist.add(clean_url,'Video',options);
       vlc.playlist.playItem(id);
 //       vlc.video.fullscreen = true;
       //vlc.video.toggleFullscreen();
